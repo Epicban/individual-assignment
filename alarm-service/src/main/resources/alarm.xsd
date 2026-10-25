@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="urn:simon:iot:alarm:v1"
+           xmlns:tns="urn:simon:iot:alarm:v1" elementFormDefault="qualified">
+  <xs:element name="ProcessMeasurementRequest"><xs:complexType><xs:sequence>
+    <xs:element name="deviceId" type="xs:string"/><xs:element name="measurementType" type="xs:string"/>
+    <xs:element name="value" type="xs:double"/><xs:element name="unit" type="xs:string"/>
+    <xs:element name="timestamp" type="xs:dateTime"/>
+  </xs:sequence></xs:complexType></xs:element>
+  <xs:element name="ProcessMeasurementResponse"><xs:complexType><xs:sequence>
+    <xs:element name="alarmCreated" type="xs:boolean"/><xs:element name="message" type="xs:string"/>
+    <xs:element name="alarmId" type="xs:long" minOccurs="0"/>
+  </xs:sequence></xs:complexType></xs:element>
+  <xs:element name="GetAlarmRequest"><xs:complexType><xs:sequence><xs:element name="alarmId" type="xs:long"/></xs:sequence></xs:complexType></xs:element>
+  <xs:element name="GetAlarmResponse"><xs:complexType><xs:sequence>
+    <xs:element name="found" type="xs:boolean"/><xs:element name="alarmId" type="xs:long" minOccurs="0"/>
+    <xs:element name="deviceId" type="xs:string" minOccurs="0"/><xs:element name="measurementType" type="xs:string" minOccurs="0"/>
+    <xs:element name="value" type="xs:double" minOccurs="0"/><xs:element name="unit" type="xs:string" minOccurs="0"/>
+    <xs:element name="createdAt" type="xs:dateTime" minOccurs="0"/><xs:element name="message" type="xs:string" minOccurs="0"/>
+  </xs:sequence></xs:complexType></xs:element>
+  <xs:element name="GetAllAlarmsRequest"><xs:complexType><xs:sequence/></xs:complexType></xs:element>
+  <xs:element name="GetAllAlarmsResponse"><xs:complexType><xs:sequence><xs:element name="alarms" minOccurs="0" maxOccurs="unbounded">
+    <xs:complexType><xs:sequence><xs:element name="alarmId" type="xs:long"/><xs:element name="deviceId" type="xs:string"/>
+      <xs:element name="measurementType" type="xs:string"/><xs:element name="value" type="xs:double"/><xs:element name="unit" type="xs:string"/>
+      <xs:element name="createdAt" type="xs:dateTime"/><xs:element name="message" type="xs:string"/></xs:sequence></xs:complexType>
+  </xs:element></xs:sequence></xs:complexType></xs:element>
+</xs:schema>

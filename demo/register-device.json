@@ -1,0 +1,5 @@
+{
+  "deviceId": "Hum-01",
+  "measurementType": "humidity",
+  "unit": "%"
+}
